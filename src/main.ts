@@ -1,10 +1,16 @@
 // src/main.ts
-import { bootstrapApplication } from '@angular/platform-browser';
-import { importProvidersFrom }  from '@angular/core';
-import { provideRouter }        from '@angular/router';
-import { IonicModule }          from '@ionic/angular';
 
-import { AppComponent }         from './app/app.component';
+import { environment } from './environments/environment';
+import { enableProdMode, importProvidersFrom } from '@angular/core';
+import { bootstrapApplication }               from '@angular/platform-browser';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
+import { IonicModule }                        from '@ionic/angular';
+
+import { AppComponent }                       from './app/app.component';
+
+if (environment.production) {
+  enableProdMode();
+}
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -34,15 +40,17 @@ bootstrapApplication(AppComponent, {
           {
             path: 'challenges',
             loadComponent: () =>
-              import('./app/pages/challenges/challenges.page').then(m => m.ChallengesPage)
+              import('./app/pages/challenges/challenges.page').then(
+                (m) => m.ChallengesPage
+              )
           },
           {
             path: 'you',
             loadComponent: () =>
-              import('./app/pages/you/you.page').then(m => m.YouPage)
+              import('./app/pages/you/you.page').then((m) => m.YouPage)
           }
         ]
       }
-    ])
+    ], withComponentInputBinding())
   ]
 }).catch(err => console.error(err));
