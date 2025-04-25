@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+// src/app/pages/home/home.page.ts
+
+import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FeedService, Post } from '../../services/feed.service';
@@ -7,6 +9,7 @@ import { FeedService, Post } from '../../services/feed.service';
   selector: 'app-home',
   standalone: true,
   imports: [IonicModule, CommonModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
@@ -33,7 +36,7 @@ export class HomePage implements OnInit {
         achievements: 1,
         kudos: 3
       }
-      // …add more if you like
+      // …you can add more sample posts here
     ];
     event?.target?.complete();
   }
