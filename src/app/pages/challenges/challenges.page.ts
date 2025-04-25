@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+// src/app/pages/challenges/challenges.page.ts
+
+import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 
@@ -14,6 +16,7 @@ export interface Challenge {
   selector: 'app-challenges',
   standalone: true,
   imports: [IonicModule, CommonModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './challenges.page.html',
   styleUrls: ['./challenges.page.scss'],
 })
