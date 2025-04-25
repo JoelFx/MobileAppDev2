@@ -1,9 +1,9 @@
 // src/app/app.routes.ts
 
-import { NgModule } from '@angular/core';
+import { NgModule }           from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     redirectTo: 'tabs/home',
