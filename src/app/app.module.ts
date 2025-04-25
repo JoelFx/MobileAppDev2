@@ -2,18 +2,19 @@
 
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule }                    from '@angular/platform-browser';
-import { IonicModule, IonicRouteStrategy }  from '@ionic/angular';
 import { RouteReuseStrategy }               from '@angular/router';
+import { IonicModule, IonicRouteStrategy }  from '@ionic/angular';
 
 import { AppComponent }    from './app.component';
-import { AppRoutesModule } from './app.routes';  // <-- pull in standalone routes
+import { AppRoutesModule } from './app.routes';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [],            // no components declared here
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-    AppRoutesModule
+    AppRoutesModule,
+    AppComponent               // ← standalone components go here, no '+' prefix
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
