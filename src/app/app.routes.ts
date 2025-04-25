@@ -1,7 +1,9 @@
 // src/app/app.routes.ts
 
-import { NgModule }           from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { TabsPage } from './tabs/tabs.page';
+import { routes as tabChildren } from './tabs/tabs.routes';
 
 export const routes: Routes = [
   {
@@ -11,8 +13,8 @@ export const routes: Routes = [
   },
   {
     path: 'tabs',
-    loadComponent: () =>
-      import('./tabs/tabs.page').then(m => m.TabsPage)
+    component: TabsPage,
+    children: tabChildren
   }
 ];
 
