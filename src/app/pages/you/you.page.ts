@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+// src/app/pages/you/you.page.ts
+
+import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 
-interface Progress {
+export interface Progress {
   weeklyDistance: number;
   weeklyTime: string;
   elevation: number;
 }
 
-interface Metric {
+export interface Metric {
   label: string;
   value: number;
 }
@@ -17,11 +19,12 @@ interface Metric {
   selector: 'app-you',
   standalone: true,
   imports: [IonicModule, CommonModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './you.page.html',
   styleUrls: ['./you.page.scss'],
 })
 export class YouPage implements OnInit {
-  progress: Progress;
+  progress!: Progress;
   metrics: Metric[] = [];
 
   ngOnInit() {
