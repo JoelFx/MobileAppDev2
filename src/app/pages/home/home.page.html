@@ -1,13 +1,53 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>home</ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Home</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">home</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="loadPosts($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+    <ion-card *ngFor="let p of posts" class="post-card">
+      <ion-card-header>
+        <ion-item lines="none">
+          <ion-avatar slot="start">
+            <img src="assets/avatar.png" />
+          </ion-avatar>
+          <ion-label>
+            <h2>{{ p.author }}</h2>
+            <p>{{ p.time | date:'MMM d, y h:mm a' }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-card-header>
+
+      <ion-card-content>
+        <h3>{{ p.title }}</h3>
+        <div class="metrics">
+          <div>
+            <strong>{{ p.distance }} mi</strong>
+            <small>Distance</small>
+          </div>
+          <div>
+            <strong>{{ p.elevation }} ft</strong>
+            <small>Elev Gain</small>
+          </div>
+          <div>
+            <strong>{{ p.duration }}</strong>
+            <small>Time</small>
+          </div>
+          <div>
+            <strong>{{ p.achievements }}</strong>
+            <small>Achievements</small>
+          </div>
+        </div>
+      </ion-card-content>
+
+      <ion-card-footer>
+        {{ p.kudos }} gave kudos
+      </ion-card-footer>
+    </ion-card>
+  </ion-list>
 </ion-content>
