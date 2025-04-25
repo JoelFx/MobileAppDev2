@@ -5,21 +5,20 @@ import { BrowserModule }                    from '@angular/platform-browser';
 import { RouteReuseStrategy }               from '@angular/router';
 import { IonicModule, IonicRouteStrategy }  from '@ionic/angular';
 
-import { AppComponent }    from './app.component';
-import { AppRoutesModule } from './app.routes';
+import { AppComponent }       from './app.component';
+import { AppRoutingModule }   from './app-routing.module';
 
 @NgModule({
-  declarations: [],            // no components declared here
+  declarations: [AppComponent],    // declare AppComponent here
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-    AppRoutesModule,
-    AppComponent               // ← standalone components go here, no '+' prefix
+    AppRoutingModule              // import routing module
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA] // allow <ion-*> tags
 })
 export class AppModule {}
