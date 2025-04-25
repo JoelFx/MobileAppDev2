@@ -1,11 +1,22 @@
-import { Component } from '@angular/core';
-import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
+// src/app/app.component.ts
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { IonicModule }                   from '@ionic/angular';
+import { CommonModule }                  from '@angular/common';
+import { RouterModule }                  from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  templateUrl: 'app.component.html',
-  imports: [IonApp, IonRouterOutlet],
+  standalone: true,
+  imports: [
+    IonicModule,
+    CommonModule,
+    RouterModule  // for <ion-router-outlet>
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <ion-app>
+      <ion-router-outlet></ion-router-outlet>
+    </ion-app>
+  `
 })
-export class AppComponent {
-  constructor() {}
-}
+export class AppComponent {}
