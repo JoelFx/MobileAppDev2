@@ -1,13 +1,30 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>challenges</ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Challenges</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">challenges</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <ion-button expand="block" fill="outline" (click)="onCreate()">
+    Create a Group Challenge
+  </ion-button>
+
+  <ion-list>
+    <ion-card *ngFor="let c of challenges" class="challenge-card">
+      <ion-card-header>
+        <ion-card-title>{{ c.title }}</ion-card-title>
+        <ion-card-subtitle>{{ c.start }} – {{ c.end }}</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p>{{ c.description }}</p>
+      </ion-card-content>
+
+      <ion-card-footer>
+        <ion-button expand="block" (click)="onJoin(c)">
+          Join Challenge
+        </ion-button>
+      </ion-card-footer>
+    </ion-card>
+  </ion-list>
 </ion-content>
