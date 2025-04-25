@@ -1,9 +1,18 @@
 import { Injectable } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class FeedService {
+export interface Post {
+  id: string;
+  author: string;
+  time: Date;
+  title: string;
+  distance: number;
+  elevation: number;
+  duration: string;
+  achievements: number;
+  kudos: number;
+}
 
-  constructor() { }
+@Injectable({ providedIn: 'root' })
+export class FeedService {
+  // for now this can stay empty or return your stub data
 }
