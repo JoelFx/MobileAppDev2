@@ -1,13 +1,41 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>you</ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>You</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">you</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>This Week</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>Distance: {{ progress.weeklyDistance }} mi</p>
+      <p>Time: {{ progress.weeklyTime }}</p>
+      <p>Elevation: {{ progress.elevation }} ft</p>
+
+      <div class="metric-chips">
+        <ion-chip *ngFor="let m of metrics">
+          <ion-label>{{ m.label }}: {{ m.value }}</ion-label>
+        </ion-chip>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Goals</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>No goals yet.</p>
+    </ion-card-content>
+
+    <ion-card-footer>
+      <ion-button expand="block" (click)="onAddGoal()">
+        Add Goal
+      </ion-button>
+    </ion-card-footer>
+  </ion-card>
 </ion-content>
