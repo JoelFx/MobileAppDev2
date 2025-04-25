@@ -1,18 +1,16 @@
-import { Component, EnvironmentInjector, inject } from '@angular/core';
-import { IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/angular/standalone';
-import { addIcons } from 'ionicons';
-import { triangle, ellipse, square } from 'ionicons/icons';
+// src/app/tabs/tabs.page.ts
+
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { IonicModule } from '@ionic/angular';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-tabs',
-  templateUrl: 'tabs.page.html',
-  styleUrls: ['tabs.page.scss'],
-  imports: [IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel],
+  standalone: true,
+  imports: [IonicModule, CommonModule, RouterModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  templateUrl: './tabs.page.html',
+  styleUrls: ['./tabs.page.scss'],
 })
-export class TabsPage {
-  public environmentInjector = inject(EnvironmentInjector);
-
-  constructor() {
-    addIcons({ triangle, ellipse, square });
-  }
-}
+export class TabsPage {}
