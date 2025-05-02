@@ -1,40 +1,281 @@
-<!-- src/app/pages/home/home.page.html -->
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Home</ion-title>
+<ion-header class="ion-no-border">
+  <ion-toolbar style="box-shadow: none">
+    <!-- Left side icons -->
+    <ion-buttons slot="start">
+      <ion-button>
+        <ion-icon
+          class="responsive-icon"
+          name="add-circle"
+          style="color: #2596be"
+        ></ion-icon>
+        <!-- Replace with your left icon -->
+      </ion-button>
+      <ion-button>
+        <ion-icon
+          class="responsive-icon"
+          name="people"
+          style="color: #2596be"
+        ></ion-icon>
+        <!-- Replace with your left icon -->
+      </ion-button>
+    </ion-buttons>
+
+    <!-- Center title (Home) -->
+    <ion-title
+      class="responsive-text"
+      style="
+        font-weight: 800;
+
+        color: #000;
+        text-align: center;
+        text-overflow: clip !important;
+      "
+      >Home</ion-title
+    >
+
+    <!-- Right side icons -->
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon
+          class="responsive-icon"
+          name="settings"
+          style="color: #2596be; font-size: 25px"
+        ></ion-icon>
+
+        <!-- Replace with your right icon -->
+      </ion-button>
+      <ion-button>
+        <ion-icon
+          class="responsive-icon"
+          name="notifications-outline"
+          style="color: #2596be; font-size: 25px"
+        ></ion-icon>
+        <!-- Replace with your right icon -->
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
+  <ion-card
+    style="padding: 10px; margin: 1px 0px 0px 0px; box-shadow: none"
+    *ngFor="let p of posts"
+  >
+    <!-- First Row: Avatar on the Left, Name and Icon with Time on the Right -->
+    <ion-card-header class="ion-no-margin ion-no-padding">
+      <ion-item lines="none">
+        <ion-avatar
+          slot="start"
+          style="height: 40px !important; width: 40px !important"
+        >
+          <img src="assets/person.jpeg" />
+        </ion-avatar>
+        <ion-label>
+          <ion-row style="justify-content: start; align-items: center">
+            <h2 style="font-weight: bolder">{{ p.author }}r</h2>
+          </ion-row>
+          <ion-row>
+            <ion-icon
+              name="bicycle-outline"
+              style="
+                color: #000;
+                font-size: 18px;
+                padding: 0px;
+                margin: 0px 0px 0px 0px;
+              "
+            ></ion-icon>
+            <p
+              style="
+                color: gray;
+                font-size: 10px;
+                font-weight: 800;
+                padding-left: 5px;
+              "
+            >
+              {{ p.time }}
+            </p>
+          </ion-row>
+        </ion-label>
+        <!-- Three-dot menu at the end -->
+        <ion-buttons slot="end" style="margin-right: -25px">
+          <ion-button>
+            <ion-icon
+              style="color: #2596be; font-size: 20px"
+              name="ellipsis-horizontal"
+            ></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+    </ion-card-header>
 
-  <ion-list>
-    <ion-card *ngFor="let p of posts" class="post-card">
-      <ion-card-header>
-        <ion-item lines="none">
-          <ion-avatar slot="start"><img src="assets/avatar.png" /></ion-avatar>
-          <ion-label>
-            <h2>{{ p.author }}</h2>
-            <p>{{ p.time | date:'MMM d, y h:mm a' }}</p>
-          </ion-label>
-        </ion-item>
-      </ion-card-header>
+    <!-- Second Row: Title -->
+    <ion-card-content style="padding: 5px">
+      <h3 style="font-weight: 800; color: #000">{{ p.title }}</h3>
+    </ion-card-content>
 
-      <ion-card-content>
-        <h3>{{ p.title }}</h3>
-        <div class="metrics">
-          <div><strong>{{ p.distance }} mi</strong><small>Distance</small></div>
-          <div><strong>{{ p.elevation }} ft</strong><small>Elev Gain</small></div>
-          <div><strong>{{ p.duration }}</strong><small>Time</small></div>
-          <div><strong>{{ p.achievements }}</strong><small>Achievements</small></div>
-        </div>
-      </ion-card-content>
+    <!-- Third Row: Three Columns with Vertical Divider -->
+    <ion-col style="display: flex" class="ion-no-padding ion-no-margin">
+      <ion-col class="ion-no-padding ion-no-margin">
+        <ion-row class="ion-no-padding ion-no-margin">
+          <ion-col
+            class="ion-no-padding ion-no-margin"
+            style="padding-right: 16px"
+          >
+            <!-- Added padding-right -->
+            <ion-row class="ion-no-padding ion-no-margin">
+              <p class="ion-no-padding ion-no-margin">
+                <strong class="card-content-1 ion-no-padding ion-no-margin"
+                  >Distance</strong
+                >
+              </p>
+            </ion-row>
 
-      <ion-card-footer>
-        {{ p.kudos }} gave kudos
-      </ion-card-footer>
-    </ion-card>
-  </ion-list>
+            <ion-row class="ion-no-padding ion-no-margin">
+              <p class="card-content-2 ion-no-padding ion-no-margin">
+                {{ p.distance }}
+              </p>
+            </ion-row>
+          </ion-col>
+          <ion-col class="divider-column" size="0"></ion-col>
+          <ion-col
+            class="ion-no-padding ion-no-margin"
+            style="padding-right: 16px"
+          >
+            <!-- Added padding-right -->
+            <ion-row class="ion-no-padding ion-no-margin">
+              <p class="ion-no-padding ion-no-margin">
+                <strong class="card-content-1 ion-no-padding ion-no-margin"
+                  >Elev Gain</strong
+                >
+              </p>
+            </ion-row>
+
+            <ion-row class="ion-no-padding ion-no-margin">
+              <p class="card-content-2 ion-no-padding ion-no-margin">
+                {{ p.elevation }} ft
+              </p>
+            </ion-row>
+          </ion-col>
+          <ion-col class="divider-column" size="0"></ion-col>
+          <ion-col class="ion-no-padding ion-no-margin">
+            <p class="ion-no-padding ion-no-margin">
+              <strong class="card-content-1 ion-no-padding ion-no-margin"
+                >Time</strong
+              >
+            </p>
+            <ion-row class="ion-no-padding ion-no-margin">
+              <p class="card-content-2 ion-no-padding ion-no-margin">
+                {{ p.duration }}
+              </p>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+
+      <ion-col class="ion-no-padding ion-no-margin" size="3">
+        <ion-row
+          class="ion-no-padding ion-no-margin"
+          style="justify-content: end"
+        >
+          <p class="ion-no-padding ion-no-margin">
+            <strong class="card-content-1 ion-no-padding ion-no-margin"
+              >Achievements</strong
+            >
+          </p>
+        </ion-row>
+        <ion-row
+          class="ion-no-padding ion-no-margin"
+          style="justify-content: end"
+        >
+          <ion-row style="justify-content: center; align-items: center">
+            <img src="assets/icon/trophy.png" style="height: 14px" />
+            <p class="card-content-2 ion-no-padding ion-no-margin">
+              {{ p.achievements }}
+            </p>
+          </ion-row>
+        </ion-row>
+      </ion-col>
+    </ion-col>
+
+    <!-- Fourth Row: User Image -->
+    <ion-img
+      style="height: 250px; border: 2px solid #000"
+      src="assets/map.jpeg"
+    >
+    </ion-img>
+
+    <!-- Fifth Row: Three Circular Images with Text "3 people like this" -->
+    <ion-row style="margin-left: 15px; align-items: center">
+      <ion-avatar class="avatar">
+        <img src="assets/person.jpeg" />
+      </ion-avatar>
+      <ion-avatar class="avatar">
+        <img src="assets/person.jpeg" />
+      </ion-avatar>
+      <ion-avatar class="avatar">
+        <img src="assets/person.jpeg" />
+      </ion-avatar>
+      <p style="font-size: 12px; margin-left: 10px">{{p.kudos}} gave kudos</p>
+    </ion-row>
+
+    <!-- Sixth Row: Icons (Like, Chat, Share) -->
+    <div class="avatar-container">
+      <ion-button fill="clear">
+        <ion-icon
+          style="color: #000; font-size: 25px"
+          name="thumbs-up-outline"
+        ></ion-icon>
+      </ion-button>
+      <ion-col class="divider-column" size="0"></ion-col>
+      <ion-button fill="clear">
+        <ion-icon
+          style="color: #000; font-size: 25px"
+          name="chatbubble-ellipses-outline"
+        ></ion-icon>
+      </ion-button>
+      <ion-col class="divider-column" size="0"></ion-col>
+      <ion-button fill="clear">
+        <ion-icon
+          style="color: #000; font-size: 25px"
+          name="share-outline"
+        ></ion-icon>
+      </ion-button>
+    </div>
+    <div style="height: 10px; width: 100%; background-color: #dddddd"></div>
+    <ion-row
+      style="
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-right: 10px;
+        align-items: center;
+      "
+    >
+      <ion-col size="2" style="align-items: center">
+        <ion-row
+          style="
+            align-items: center;
+            background-color: #ddd;
+            height: 40px;
+            width: 40px;
+            border-radius: 30px;
+          "
+        >
+          <ion-icon
+            name="lock-closed"
+            style="color: #000; font-size: 30px"
+          ></ion-icon>
+        </ion-row>
+      </ion-col>
+      <ion-col
+        style="margin-left: 10px; align-items: center"
+        class="ion-no-padding"
+      >
+        <ion-text style="font-weight: 600; font-size: 12px; color: #000">
+          Group Activity Settings. Use your privacy controls to choose who can
+          see group activities.
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <div style="height: 10px; width: 100%; background-color: #dddddd"></div>
+  </ion-card>
 </ion-content>

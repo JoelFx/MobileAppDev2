@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 export interface Post {
   id: string;
   author: string;
-  time: Date;
+  time: string;
   title: string;
   distance: number;
   elevation: number;
   duration: string;
   achievements: number;
   kudos: number;
+  placeholderImage: string;
 }
 
 @Injectable({ providedIn: 'root' })

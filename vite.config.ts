@@ -3,9 +3,7 @@ import { defineConfig } from 'vite';
 import createAngularPlugin from '@analogjs/vite-plugin-angular';
 
 export default defineConfig({
-  plugins: [
-    createAngularPlugin()
-  ],
+  plugins: [createAngularPlugin()],
   optimizeDeps: {
     exclude: [
       '@ionic/angular',
@@ -27,7 +25,7 @@ export default defineConfig({
       'ion-avatar',
       'ion-label',
       'ion-toolbar',
-      'ion-title'
-    ]
-  }
+      'ion-title',
+    ],
+  },
 });

@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar color="primary">
     <ion-title>Maps</ion-title>
   </ion-toolbar>
@@ -25,4 +25,203 @@
   <ion-button expand="block" (click)="onDraw()">
     Draw your own route
   </ion-button>
+</ion-content> -->
+
+<ion-content>
+  <!-- Map Section -->
+  <div style="height: 400px">
+    <!-- Assuming you're using Google Maps or some map integration here -->
+
+    <img
+      src="assets/map.jpeg"
+      style="position: absolute; width: 100%; height: 400px"
+    />
+    <ion-row style="padding-top: 30px">
+      <ion-button
+        style="
+          font-size: 12px;
+          margin-right: 10px;
+          position: relative;
+          --background: #fff;
+          color: #000;
+          --border-width: 2.5px;
+          --border-style: solid;
+          --border-color: #000;
+          box-shadow: 3px 3px 6px rgba(0, 0, 0, 2);
+        "
+      >
+        Current Location
+      </ion-button>
+      <ion-button
+        style="
+          font-size: 12px;
+          margin-right: 10px;
+          position: relative;
+          --background: #fff;
+          color: #000;
+          --border-width: 2.5px;
+          --border-style: solid;
+          --border-color: #000;
+          box-shadow: 3px 3px 6px rgba(0, 0, 0, 2);
+        "
+      >
+        Run
+      </ion-button>
+      <ion-button
+        style="
+          font-size: 12px;
+          margin-right: 10px;
+          position: relative;
+          --background: #fff;
+          color: #000;
+          --border-width: 2.5px;
+          --border-style: solid;
+          --border-color: #000;
+          box-shadow: 3px 3px 6px rgba(0, 0, 0, 2);
+        "
+      >
+        5 miles
+      </ion-button>
+      <ion-button
+        style="
+          font-size: 12px;
+          position: relative;
+          --background: #fff;
+          color: #000;
+          --border-width: 2.5px;
+          --border-style: solid;
+          --border-color: #000;
+          box-shadow: 3px 3px 6px rgba(0, 0, 0, 2);
+        "
+      >
+        Any Elevation
+      </ion-button>
+    </ion-row>
+  </div>
+  <div>
+    <!-- Tabs Section -->
+    <ion-segment>
+      <ion-segment-button
+        style="color: gray; font-weight: 500; font-size: 14px"
+        value="first"
+        content-id="first"
+      >
+        <ion-label>Segments</ion-label>
+      </ion-segment-button>
+      <ion-segment-button
+        style="color: gray; font-weight: 500; font-size: 14px"
+        value="second"
+        content-id="second"
+      >
+        <ion-label>Routes</ion-label>
+      </ion-segment-button>
+      <ion-segment-button
+        style="color: gray; font-weight: 500; font-size: 14px"
+        value="third"
+        content-id="third"
+      >
+        <ion-label>Saved</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+    <ion-segment-view>
+      <ion-segment-content id="first">Segments</ion-segment-content>
+      <ion-segment-content id="second">
+        <ion-list>
+          <ion-item
+            *ngFor="let item of items; let i = index"
+            (click)="selectItem(i)"
+            [style.--background]="selectedIndex === i ? '#f0f0f0' : 'transparent'"
+          >
+            <div style="width: 90px; padding-right: 10px">
+              <img src="assets/map.jpeg" />
+            </div>
+
+            <ion-label>
+              <!-- First Row: Title -->
+              <h2 style="font-weight: bold; margin: 0">{{ item.title }}</h2>
+
+              <!-- Second Row: Subtitle -->
+              <p style="color: gray; font-size: 14px; margin: 4px 0">
+                <ion-row style="align-items: center">
+                  <ion-icon
+                    name="bicycle-outline"
+                    style="color: #000; font-size: 20px; margin-right: 5px"
+                  ></ion-icon>
+                  <p style="margin-right: 10px; font-size: 12px">
+                    {{ item.distance }}
+                  </p>
+                  <p style="margin-right: 10px; font-size: 12px">
+                    {{ item.elevation }}
+                  </p>
+                  <ion-icon
+                    name="time-outline"
+                    style="color: #000; font-size: 20px; margin-right: 5px"
+                  ></ion-icon>
+                  <p style="margin-right: 5px; font-size: 12px">
+                    {{ item.duration }}
+                  </p>
+                  <ion-icon
+                    name="trending-up-outline"
+                    style="color: #000; font-size: 20px"
+                  ></ion-icon>
+                </ion-row>
+              </p>
+
+              <!-- Third Row: Buttons (only show if selected) -->
+              <ion-row *ngIf="selectedIndex === i" style="margin-top: 8px">
+                <ion-button
+                  size="small"
+                  style="
+                    font-size: 12px;
+                    --background: #fff;
+                    color: #000;
+                    --border-width: 2px;
+                    --border-style: solid;
+                    --border-color: #000;
+                    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+                    margin-right: 8px;
+                  "
+                >
+                  Save
+                </ion-button>
+                <ion-button
+                  size="small"
+                  style="
+                    font-size: 12px;
+                    --background: #fff;
+                    color: #000;
+                    --border-width: 2px;
+                    --border-style: solid;
+                    --border-color: #000;
+                    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+                  "
+                >
+                  Save Details
+                </ion-button>
+              </ion-row>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+        <ion-item lines="none" button detail="false" style="margin-top: -8px">
+          <!-- Left Icon -->
+          <ion-icon
+            name="pencil"
+            slot="start"
+            style="font-size: 24px; color: #000"
+          ></ion-icon>
+
+          <!-- Text -->
+          <ion-label style="font-weight: bold"> Draw your own route </ion-label>
+
+          <!-- Right Arrow -->
+          <ion-icon
+            name="chevron-forward"
+            slot="end"
+            style="font-size: 24px; columns: #000"
+          ></ion-icon>
+        </ion-item>
+      </ion-segment-content>
+      <ion-segment-content id="third">Saved List</ion-segment-content>
+    </ion-segment-view>
+  </div>
 </ion-content>
